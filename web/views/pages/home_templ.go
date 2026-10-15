@@ -9,12 +9,11 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"workshop/internal/domain/sighting"
-	"workshop/web/views/components"
+	"fmt"
 	"workshop/web/views/layout"
 )
 
-func Home(sightings []sighting.Sighting) templ.Component {
+func Home(data OrbitPage) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -47,57 +46,204 @@ func Home(sightings []sighting.Sighting) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<h1>Sightings</h1>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header class=\"site-header\"><a class=\"brand\" href=\"/\" aria-label=\"Wild Orbit home\"><img src=\"/assets/images/logo.svg\" width=\"38\" height=\"38\" alt=\"\"><span>WILD<span class=\"brand-light\">ORBIT</span><span class=\"brand-dot\" aria-hidden=\"true\">✦</span></span></a> <span class=\"header-note\"><span class=\"live-dot\"></span>A FIELD GUIDE TO EVERYWHERE</span> <button class=\"location-trigger enhanced\" id=\"location-trigger\" hidden><span aria-hidden=\"true\">⌖</span> Your coordinates <span class=\"tiny-arrow\" aria-hidden=\"true\">↗</span></button></header><main id=\"explore\"><section class=\"intro\" aria-labelledby=\"page-title\"><p class=\"eyebrow\"><span></span> THE WORLD IS STILL WILD</p><h1 id=\"page-title\">A little closer<br>to <em>the wild.</em></h1><p class=\"intro-copy\">Extraordinary lives. Unexpected places.<br>Follow your curiosity around the planet.</p></section><section class=\"observatory\" id=\"observatory\" aria-label=\"Explore wildlife sightings\"><div class=\"globe-backdrop\" aria-hidden=\"true\"><svg class=\"globe-fallback\" viewBox=\"0 0 800 800\"><defs><radialGradient id=\"halo\"><stop stop-color=\"#be9250\" stop-opacity=\".07\"></stop><stop offset=\"1\" stop-color=\"#be9250\" stop-opacity=\"0\"></stop></radialGradient></defs><circle cx=\"400\" cy=\"400\" r=\"395\" fill=\"url(#halo)\"></circle><g fill=\"none\" stroke=\"#b18b4c\" stroke-width=\".65\"><circle cx=\"400\" cy=\"400\" r=\"326\"></circle><ellipse cx=\"400\" cy=\"400\" rx=\"245\" ry=\"326\"></ellipse><ellipse cx=\"400\" cy=\"400\" rx=\"130\" ry=\"326\"></ellipse><ellipse cx=\"400\" cy=\"400\" rx=\"30\" ry=\"326\"></ellipse><ellipse cx=\"400\" cy=\"400\" rx=\"326\" ry=\"65\"></ellipse><ellipse cx=\"400\" cy=\"400\" rx=\"326\" ry=\"170\"></ellipse><ellipse cx=\"400\" cy=\"400\" rx=\"326\" ry=\"260\"></ellipse><path d=\"M74 400h652M400 74v652\"></path></g></svg><canvas id=\"globe\"></canvas><div class=\"globe-axis axis-top\">90° N</div><div class=\"globe-axis axis-bottom\">90° S</div></div><div class=\"context-bar\"><div><span class=\"live-dot\"></span><h2 id=\"context-label\">A window into the world</h2></div><button id=\"layout-toggle\" class=\"layout-toggle enhanced\" aria-pressed=\"false\" hidden><span aria-hidden=\"true\">▦</span> Grid</button></div><div class=\"photo-stage\" id=\"photo-stage\"><div class=\"photo-list\" id=\"photo-list\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			if len(sightings) == 0 {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>No sightings have been ingested yet.</p>")
+			for i, r := range data.Initial {
+				var templ_7745c5c3_Var3 = []any{fmt.Sprintf("photo-slot slot-%d", i)}
+				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var3...)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-			} else {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<p>Total: ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<article class=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var3 string
-				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(len(sightings))
+				var templ_7745c5c3_Var4 string
+				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.CSSClasses(templ_7745c5c3_Var3).String())
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 17, Col: 29}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 1, Col: 0}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</p><ul class=\"sightings\">")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				for _, s := range sightings {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<li>")
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-					templ_7745c5c3_Err = components.SightingCard(s).Render(ctx, templ_7745c5c3_Buffer)
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</li>")
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><a class=\"photo-card\" href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</ul>")
+				var templ_7745c5c3_Var5 templ.SafeURL
+				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(r.Photo.URL))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 36, Col: 59}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" data-id=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var6 string
+				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(r.ID)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 36, Col: 76}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><div class=\"image-wrap\"><img src=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var7 string
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue(r.Photo.Thumb)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 37, Col: 57}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" alt=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var8 string
+				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.ResolveAttributeValue(r.Name + " — " + r.Place)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 37, Col: 92}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var8)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" loading=\"lazy\"></div><div class=\"photo-caption\"><span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var9 string
+				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(r.Name)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 38, Col: 50}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</span><span class=\"photo-arrow\" aria-hidden=\"true\">↗</span><small>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var10 string
+				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(r.Country)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 38, Col: 132}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</small></div><span class=\"observer\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var11 string
+				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(r.Observer)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 39, Col: 44}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</span></a></article>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
+			if len(data.Records) == 0 {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<p class=\"empty-state\">No photographs in this orbit yet. Import sightings using the workshop CLI to begin exploring.</p>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div><nav class=\"discovery enhanced\" aria-label=\"Choose your next discovery\" hidden><button class=\"journey journey-world\" data-mode=\"world\"><span class=\"button-icon\" aria-hidden=\"true\">↗</span><span>Across the world<small>A change of coordinates</small></span></button> <button class=\"journey journey-climate\" data-mode=\"climate\"><span class=\"button-icon\" aria-hidden=\"true\">☼</span><span>Different climate<small>Find another kind of warmth</small></span></button> <button class=\"journey journey-water\" data-mode=\"water\"><span class=\"button-icon waves\" aria-hidden=\"true\">≈</span><span>On the water<small>Life beyond the shoreline</small></span></button> <button class=\"journey journey-different\" data-mode=\"different\"><span class=\"button-icon\" aria-hidden=\"true\">✳</span><span>Something different<small>Let curiosity take the lead</small></span></button> <button class=\"near-button\" id=\"near-me\" data-mode=\"near\" hidden><span aria-hidden=\"true\">⌖</span> Near me</button></nav><div class=\"results-footer\"><p id=\"result-status\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Six glimpses of a much bigger world.</p><button class=\"show-more\" id=\"show-more\" hidden>Show more sightings <span aria-hidden=\"true\">↓</span></button> <span class=\"stack-hint\" id=\"stack-hint\">HOVER TO SHUFFLE · CLICK TO EXPLORE</span></div></section><section class=\"location-panel\" id=\"location-panel\" aria-labelledby=\"location-title\" hidden><div><p class=\"eyebrow\">YOUR STARTING POINT</p><h2 id=\"location-title\">Where does your orbit begin?</h2><p id=\"location-message\">Share your location to find the nearest recorded wildlife, or choose a country. Your coordinates stay in your browser.</p></div><div class=\"location-actions\"><label for=\"country\">Choose a country</label> <select id=\"country\"><option value=\"\">Select a country</option> ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			for _, c := range data.Countries {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<option value=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var12 string
+				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.ResolveAttributeValue(c.Code)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 68, Col: 29}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var12)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var13 string
+				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(c.Name)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 68, Col: 40}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</option>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</select><button id=\"retry-location\">Use my location <span aria-hidden=\"true\">↗</span></button><button id=\"close-location\" class=\"text-button\">Close</button></div></section><div class=\"bottom-note\"><span class=\"note-line\"></span><span>NO TWO JOURNEYS ARE THE SAME</span><span class=\"note-line\"></span></div></main><footer class=\"site-footer\"><p>A whole planet. <span>One shared home.</span></p><div class=\"dataset-info\"><span>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var14 string
+			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(data.Total))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 75, Col: 138}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " OBSERVATIONS</span><span>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var15 string
+			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(data.Species))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/views/pages/home.templ`, Line: 75, Col: 192}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " SPECIES</span></div><div class=\"footer-links\"><a href=\"https://www.gbif.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Data: GBIF ↗</a><a href=\"https://open-meteo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Weather: Open-Meteo ↗</a><button class=\"text-button enhanced\" id=\"motion-toggle\" aria-pressed=\"false\" hidden>Pause dust</button></div></footer><dialog id=\"sighting-dialog\" aria-labelledby=\"sighting-title\"><button class=\"dialog-close\" id=\"dialog-close\" aria-label=\"Close sighting\">×</button><div id=\"sighting-content\"></div><section class=\"similar-section\" aria-labelledby=\"similar-title\"><div class=\"similar-heading\"><h3 id=\"similar-title\">Same species. Other stories.</h3><div><button id=\"similar-prev\" aria-label=\"Previous similar sightings\">←</button><button id=\"similar-next\" aria-label=\"Next similar sightings\">→</button></div></div><div class=\"similar-list\" id=\"similar-list\"></div></section></dialog>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templ.JSONScript("orbit-data", data).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			return nil
 		})
-		templ_7745c5c3_Err = layout.Base(layout.BaseProps{
-			Title: "Sightings",
-		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layout.Base(layout.BaseProps{Title: "Wild Orbit — A little closer to the wild"}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -10,14 +10,20 @@ templ Base(props BaseProps) {
 		<head>
 			<meta charset="utf-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="theme-color" content="#090b0d"/>
+			<meta name="description" content="Follow your curiosity around the planet. Discover wildlife sightings, extraordinary places, and the stories behind them."/>
 			<title>{ props.Title }</title>
+			<link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg"/>
+			<link rel="manifest" href="/assets/manifest.json"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+			<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;450;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 			<link rel="stylesheet" href="/assets/css/app.css"/>
 		</head>
 		<body>
-			<main class="container">
-				{ children... }
-			</main>
-			<script src="/assets/js/app.js"></script>
+			<a class="skip-link" href="#explore">Skip to sightings</a>
+			{ children... }
+			<script type="module" src="/assets/js/app.js"></script>
 		</body>
 	</html>
 }
