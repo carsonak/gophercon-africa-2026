@@ -10,8 +10,6 @@ Ainsley Clark, Go Developer Advocate @ JetBrains
 
 **GopherCon Africa 2026, Nairobi**
 
-**Live Deployment:** [https://gophercon-africa-2026.fly.dev](https://gophercon-africa-2026.fly.dev)
-
 The workshop app: a site for **animal sightings**. Occurrence records come from
 [GBIF](https://www.gbif.org), are stored in SQLite through [sqlc](https://sqlc.dev), rendered
 server-side with [templ](https://templ.guide), and enriched with
