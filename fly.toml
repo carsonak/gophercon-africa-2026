@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for gophercon-africa-2026 on 2026-10-17T09:13:43+03:00
+# fly.toml app configuration file generated for wild-orbit on 2026-10-17T09:13:43+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'gophercon-africa-2026'
+app = 'wild-orbit'
 primary_region = 'jnb'
 
 [build]
