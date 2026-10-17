@@ -19,4 +19,4 @@ ENV PORT=8080 \
 	DB_URI=file:/app/workshop.db
 
 EXPOSE 8080
-ENTRYPOINT ["/app/workshop", "web"]
+ENTRYPOINT ["/app/workshop", "--live", "web"]
