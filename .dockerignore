@@ -9,7 +9,13 @@ Dockerfile
 .env.*
 !.env.example
 cmd/mockapi/
+cmd/themes/
 architectures/
 tools/
+vendor/
+.agents/
 .claude/
+.github/
+.idea/
 .junie/
+.run/

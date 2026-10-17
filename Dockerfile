@@ -1,9 +1,11 @@
 FROM golang:1.27-alpine AS build
 WORKDIR /src
 
-# Modules come from vendor/, so there's nothing to download first.
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . .
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/workshop .
+RUN CGO_ENABLED=0 go build -mod=readonly -trimpath -ldflags="-s -w" -o /out/workshop .
 
 # Migrate the committed database, or create an empty one if nothing was
 # committed, since the web command refuses to start with pending migrations.
